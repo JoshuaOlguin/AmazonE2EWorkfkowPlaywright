@@ -1,4 +1,4 @@
-name: Run Playwright and TypeScript Tests
+name: Run Playwright and TypeScript Tests and Test Result Visualization
 
 on:
   push:
