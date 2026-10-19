@@ -10,6 +10,7 @@ test('ValidateEndToEndShoppingWorkflow_XboxSeriesX', async ({ page }) => {
   await page.goto('https://www.amazon.com/');
 
   const homePage = new Home(page);
+  await homePage.continueShopping();
   await homePage.stayOnAmazonCom();
   await homePage.searchForProduct(itemName);
 
@@ -46,6 +47,7 @@ test('ValidateEndToEndShoppingWorkflow_PlayStation5', async ({ page }) => {
   await page.goto('https://www.amazon.com/');
 
   const homePage = new Home(page);
+  await homePage.continueShopping();
   await homePage.stayOnAmazonCom();
   await homePage.searchForProduct(itemName);
 
