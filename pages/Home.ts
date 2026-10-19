@@ -6,15 +6,13 @@ export class Home {
 
   private readonly searchButton: Locator;
   private readonly searchTextBox: Locator;
-  private readonly continueShoppingButton: Locator;
+  private readonly stayButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.searchButton = page.locator('#nav-search-submit-button');
     this.searchTextBox = page.locator('#twotabsearchtextbox');
-    this.continueShoppingButton = page.locator(
-      "//button[@class='a-button-text' and text()='Continue shopping']"
-    );
+    this.stayButton = page.locator('#redir-stay-at-www');
   }
 
   async searchForProduct(inputParameter: string): Promise<void> {
@@ -22,11 +20,23 @@ export class Home {
     await this.searchButton.click();
   }
 
-  async continueShopping(): Promise<void> {
-    if (await this.continueShoppingButton.isVisible()) {
-        await this.continueShoppingButton.click();
+  async stayOnAmazonCom(): Promise<void> {
+    try {
+        await this.stayButton.waitFor({
+            state: 'visible',
+            timeout: 5000
+        });
+
+        await this.stayButton.click();
+
+        console.log('Clicked on "Stay on Amazon.com"');
+    } 
+    catch (error) 
+    {
+        console.log('"Stay on Amazon.com" popup was not displayed. Continuing test execution.');
     }
   }
+  
   async clickOnSelectedItem(item: Locator): Promise<void> {
 
   await item
