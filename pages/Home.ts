@@ -6,18 +6,26 @@ export class Home {
 
   private readonly searchButton: Locator;
   private readonly searchTextBox: Locator;
+  private readonly continueShoppingButton: Locator;
   private readonly stayButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.searchButton = page.locator('#nav-search-submit-button');
     this.searchTextBox = page.locator('#twotabsearchtextbox');
+    this.continueShoppingButton = page.getByRole('button', { name: /continue shopping/i });
     this.stayButton = page.locator('#redir-stay-at-www');
   }
 
   async searchForProduct(inputParameter: string): Promise<void> {
     await this.searchTextBox.fill(inputParameter);
     await this.searchButton.click();
+  }
+
+  async continueShopping(): Promise<void> {
+    if (await this.continueShoppingButton.isVisible()) {
+        await this.continueShoppingButton.click();
+    }
   }
 
   async stayOnAmazonCom(): Promise<void> {
