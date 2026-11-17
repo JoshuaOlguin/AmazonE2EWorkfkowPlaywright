@@ -11,8 +11,6 @@ on:
       - Master
       - main
 
-  workflow_dispatch:
-
 permissions:
   contents: read
   checks: write
